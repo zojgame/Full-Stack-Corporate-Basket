@@ -1,0 +1,222 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+}
+
+.App{
+  padding-top: 5%;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.header{
+  position: fixed;
+  display: flex;
+  padding: 0 5%;
+  align-items: center;
+  top: 0;
+  background: #1B1BB3;
+  margin: 0 auto;
+  height: 10%;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-around;
+}
+
+.header > .button{
+  color: #FF9200;
+  cursor: pointer;
+  user-select: none;
+}
+.header > .button:hover{
+  color: #FFE800;
+  text-decoration: underline;
+}
+
+.mainPage{
+  color: white;
+  background: white;
+}
+
+.login-page-container, .register-page-container{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  height: 80vh;
+}
+
+.login-form-container, .register-form-container{
+  display: flex;
+  padding: 0 20%;
+  background: #FFE800;
+  grid-column: 3/5;
+  border-radius: 15px;
+  grid-row: 2/5;
+  align-items: center;  
+}
+
+.login-form, .register-form{
+  width: 100%;
+  height:80%;
+  text-align: center;
+}
+
+.login-form > p, .register-form > p{
+  font-size:x-large;
+  font-weight: bold;
+}
+
+.login-buttons, .register-buttons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #1B1BB3;
+}
+
+.register-btn, .login-btn{
+  user-select: none;  
+  cursor: pointer;
+}
+.register-btn:hover, .login-btn:hovero{
+  text-decoration: underline;
+}
+
+.main-page-container{
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.shopping-cart-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid white;
+}
+
+.shopping-cart{
+  display: flex;
+  cursor: pointer;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border: 1px solid white;
+}
+
+.myBasketPageContainer, .pageContainer, .currentBasketPageContainer{
+  display: flex;
+  /* justify-content: center; */
+  /* width: 80%; */
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.createBasketBtn{
+  text-align: end;
+  cursor: pointer;
+  user-select: none;
+}
+
+.createBasketBtn p{
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 1%;
+  border: 1px solid white;
+  background: #FFE800;
+  color: black;
+  border-radius: 5px;
+}
+
+.createBasketBtn:hover p span{
+  animation: spin 1s ease-in-out forwards;
+}
+
+@keyframes spin{
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+.myBasketPage{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.label, .basketFormFields h2{
+  color: white; 
+  text-align: center;
+}
+
+.item-component {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  border: 1px solid white;
+  margin-bottom: 3%;
+  padding: 3% 0;
+}
+
+.currentBasketPage{
+  width: 80%;
+}
+
+.creation-item-form{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  margin-bottom: 1%;
+}
