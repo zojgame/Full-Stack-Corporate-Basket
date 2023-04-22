@@ -13,7 +13,7 @@ export const BasketPage = () => {
     const {id} = useParams();
     const [isEditing, setIsEditing] = useState(false);
     const [newItems, setNewItems] = useState<Item[]>([]);
-    const [basket, setBasket] = useState<Basket>();
+    // const [basket, setBasket] = useState<Basket>();
     const navigate = useNavigate();
     const itemPrice = useRef<InputRef>(null);
     const itemTitle = useRef<InputRef>(null);
@@ -23,9 +23,14 @@ export const BasketPage = () => {
     useEffect(() => {
         getCurrentUserBasket(id)
         .then(json => {
-            setBasket(json.data.data); 
-            setNewItems(json.data.data.items);
-            setBasketTitle(`${json.data.data.basket_name}`) ;          
+            if(json.data.data.public || json.data.data.first_owner === localStorage.getItem('user')) {
+                setNewItems(json.data.data.items);
+                setBasketTitle(`${json.data.data.basket_name}`) ;
+            }
+            else{
+                notification.open({message: 'Страница не доступна для просмотра'})
+                navigate('/');
+            }
         })
         .catch(err => {
             if(err.request.status === 400){
