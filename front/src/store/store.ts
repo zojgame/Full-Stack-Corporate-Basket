@@ -56,18 +56,65 @@ class Store {
         await this.getCurrentUserBaskets(); 
         let newUserBaskets = this.userBaskets.filter(basket => basket._id !== basketId);
         try {
-            const response = await axios.post(URL, {items: items}, {headers: {
+                const response = await axios.post(URL, {items: items}, {headers: {
+                    Authorization: `Bearer ${token}`
+                }}).then(res => {
+                    newUserBaskets = [...newUserBaskets, res.data.basket]
+                    this.userBaskets = newUserBaskets;
+                    const items = newUserBaskets.filter(bask => bask._id === basketId)[0].items;
+                    this.setCurrentPageItems(items);
+                })                
+                return response;
+            
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async updateBasketTitle(basketId: String, title: String){
+        const URL = `http://localhost:8080/basket/update/${basketId}`;
+        const token = localStorage.getItem('token')
+        await this.getCurrentUserBaskets(); 
+        let newUserBaskets = this.userBaskets.filter(basket => basket._id !== basketId);
+        try {
+            const response = await axios.post(URL, {basket_name: title}, {headers: {
                 Authorization: `Bearer ${token}`
             }}).then(res => {
                 newUserBaskets = [...newUserBaskets, res.data.basket]
                 this.userBaskets = newUserBaskets;
                 const items = newUserBaskets.filter(bask => bask._id === basketId)[0].items;
                 this.setCurrentPageItems(items);
-            })
+            });
+
             return response;
+            
         } catch (error) {
             console.log(error)
         }
+    }
+
+    async deleteCurrentBasket(basketId : String){        
+        try {
+            const URL = `http://localhost:8080/basket/delete/${basketId}`;
+            const token = localStorage.getItem('token')
+            const response = axios.delete(URL, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => 
+        {
+            const newBaskets = [...this.userBaskets.filter(basket => basket._id !== basketId)];
+            this.setCurrentUserBaskets(newBaskets);
+            this.toastMessage = res.data.message;
+        })
+
+        return response;
+        } catch (error) {
+            console.log(error)
+        }
+        
+
     }
     
 }

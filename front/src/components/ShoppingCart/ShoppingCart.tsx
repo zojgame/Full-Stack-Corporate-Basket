@@ -1,7 +1,8 @@
-import {ShoppingCartOutlined} from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
 import { Basket } from '../../types/types';
-import { Tooltip, Button } from 'antd';
+import { Tooltip, Button, notification } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { globalStore } from '../../store/store';
 
 export const ShoppingCart = ({basket} : {basket: Basket}) => {
     const navigate = useNavigate();
@@ -17,8 +18,16 @@ export const ShoppingCart = ({basket} : {basket: Basket}) => {
         document.execCommand('copy')
         textField.remove()
     }
+
+    const onDeleteClickHandle = (evt:any) => {
+        evt.stopPropagation();     
+        globalStore.deleteCurrentBasket(basket._id);
+        notification.open({message: globalStore.toastMessage})
+    }
+
    return (       
         <div className="shopping-cart" onClick={onClickShoppingCart}>
+            
             <p>{basket.basket_name}</p>
             {basket.public ? 
             <Tooltip title={`Скопировать ссылку`}>
@@ -26,9 +35,11 @@ export const ShoppingCart = ({basket} : {basket: Basket}) => {
                     Поделиться корзиной
                 </Button>
                  
-            </Tooltip> : <></>}
+            </Tooltip> : <div></div>}
             <p>{basket.items.reduce((acc, prev) => Number(prev.price) + acc, 0)}</p>
-            <ShoppingCartOutlined style={{fontSize: '40px'}}/>
+            <Button onClick={onDeleteClickHandle}>
+                <DeleteOutlined style={{fontSize: '25px'}} />                
+            </Button>
         </div>
    );
 };

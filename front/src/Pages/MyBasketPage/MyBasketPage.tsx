@@ -1,13 +1,13 @@
 import { ShoppingCart } from "../../components";
 import { useEffect, useState } from "react";
-import { getUserBaskets, checkAuthUser } from "../../api/api";
 import { globalStore } from "../../store/store";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { notification } from "antd";
+import {ShoppingCartOutlined} from '@ant-design/icons';
  
 
-export const MyBasketPage = () => {
+export function MyBasketPage(){
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false);
 
@@ -26,7 +26,7 @@ export const MyBasketPage = () => {
 
    return (
        <div className="myBasketPageContainer">
-            <h1>Ваши корзины</h1>
+            <h1>Ваши корзины <ShoppingCartOutlined style={{fontSize: '40px'}}/></h1>
             <div className="myBasketPage">
                  <div className="createBasketBtn">
                     <p onClick={() => navigate('../basket/create')}>Создать корзину <PlusCircleOutlined style={{fontSize: 25}}/></p>
@@ -40,4 +40,8 @@ export const MyBasketPage = () => {
             </div>
        </div>
    );
-};
+}
+
+// export const MyBasketPage = () => {
+    
+// };
