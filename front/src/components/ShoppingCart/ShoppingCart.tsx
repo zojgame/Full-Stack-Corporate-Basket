@@ -10,7 +10,8 @@ export const ShoppingCart = ({basket} : {basket: Basket}) => {
         navigate(`../basket/${basket._id}`)
     }
 
-    const onBtnClickHandle = () => {
+    const onBtnClickHandle = (e:any) => {
+        e.stopPropagation(); 
         var textField = document.createElement('textarea')
         textField.innerText = `http://localhost:5173/basket/${basket._id}`
         document.body.appendChild(textField)
@@ -21,8 +22,11 @@ export const ShoppingCart = ({basket} : {basket: Basket}) => {
 
     const onDeleteClickHandle = (evt:any) => {
         evt.stopPropagation();     
-        globalStore.deleteCurrentBasket(basket._id);
-        notification.open({message: globalStore.toastMessage})
+        globalStore.deleteCurrentBasket(basket._id).then(() => 
+            {
+                notification.open({message: 'Корзина удалена'})
+            }        
+        );
     }
 
    return (       

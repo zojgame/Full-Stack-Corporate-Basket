@@ -5,9 +5,9 @@ import { PlusCircleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { notification } from "antd";
 import {ShoppingCartOutlined} from '@ant-design/icons';
- 
+import { observer } from "mobx-react-lite";
 
-export function MyBasketPage(){
+export const MyBasketPage = observer(() => {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false);
 
@@ -40,8 +40,4 @@ export function MyBasketPage(){
             </div>
        </div>
    );
-}
-
-// export const MyBasketPage = () => {
-    
-// };
+});

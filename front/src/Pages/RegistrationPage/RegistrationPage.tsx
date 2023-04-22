@@ -8,10 +8,14 @@ export const RegistrationPage = () => {
     const onFinishHandle = (values : any) => {
         console.log('Received values of form: ', values);
         createUser(values.username, values.password)
-        
+        .then(() => {
             notification.open({
                 message: globalStore.toastMessage
-            })
+            })        
+            navigate('/login')
+        })
+        .catch(err => notification.open({message: `${globalStore.toastMessage}`}))
+        
         
         
     };

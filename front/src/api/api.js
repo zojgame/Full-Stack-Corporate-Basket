@@ -110,7 +110,7 @@ export const createBasket = async (title, isPublic, items) => {
         }
     })
     .then((res) => {
-        globalStore.setMessage('Корзина создана1')})
+        globalStore.setMessage('Корзина создана')})
     .catch(err => globalStore.setMessage(`Ошибка ${err}`))
 
     return response;

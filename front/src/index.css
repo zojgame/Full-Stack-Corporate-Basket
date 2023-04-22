@@ -67,6 +67,7 @@ button:focus-visible {
   width: 100%;
   box-sizing: border-box;
   justify-content: space-around;
+  z-index: 100;
 }
 
 .header > .button{
