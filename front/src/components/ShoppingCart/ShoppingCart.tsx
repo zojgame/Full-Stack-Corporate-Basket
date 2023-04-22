@@ -23,9 +23,9 @@ export const ShoppingCart = ({basket} : {basket: Basket}) => {
     const onDeleteClickHandle = (evt:any) => {
         evt.stopPropagation();     
         globalStore.deleteCurrentBasket(basket._id).then(() => 
-            {
-                notification.open({message: 'Корзина удалена'})
-            }        
+        {
+            notification.open({message: 'Корзина удалена'})
+        }        
         );
     }
 
@@ -37,9 +37,14 @@ export const ShoppingCart = ({basket} : {basket: Basket}) => {
             <Tooltip title={`Скопировать ссылку`}>
                 <Button onClick={onBtnClickHandle}>
                     Поделиться корзиной
-                </Button>
-                 
-            </Tooltip> : <div></div>}
+                </Button>                 
+            </Tooltip> 
+            : 
+            <Tooltip title={`Корзина не публичная`}>
+                <Button disabled danger style={{color: 'white', background: 'red'}}>
+                    Поделиться корзиной
+                </Button>                 
+            </Tooltip>}
             <p>{basket.items.reduce((acc, prev) => Number(prev.price) + acc, 0)}</p>
             <Button onClick={onDeleteClickHandle}>
                 <DeleteOutlined style={{fontSize: '25px'}} />                
