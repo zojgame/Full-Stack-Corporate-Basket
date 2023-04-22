@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { globalStore } from "../../store/store";
 import { useEffect } from "react";
 import { checkAuthUser } from "../../api/api";
+import { HomeOutlined, ShoppingCartOutlined, LogoutOutlined, LoginOutlined, UserAddOutlined } from "@ant-design/icons";
 
 export const Header = () => {
     useEffect(() => {
@@ -23,15 +24,20 @@ export const Header = () => {
    return (
     <>
         <div className="header">
-                <div className="button" onClick={() => navigate('/')}>Главная страница</div>
-                <div className="button" onClick={() => navigate('/myBaskets')}>Мои корзины</div>
+                <div className="button" onClick={() => navigate('/')}>
+                    <HomeOutlined style={{fontSize:'20px'}}/>  Главная страница</div>
+                <div className="button" onClick={() => navigate('/myBaskets')}>
+                    <ShoppingCartOutlined style={{fontSize:'20px'}}/>  Мои корзины</div>
                 {
                     isUserAuth
-                        ? <><div className="button" onClick={handleLogout}>Выйти</div></> 
+                        ? <><div className="button" onClick={handleLogout}>
+                            <LogoutOutlined style={{fontSize:'15px'}}/>  Выйти</div></> 
                         : 
                         <>
-                            <div className="button" onClick={() => navigate('/registration')}>Регистрация</div>
-                            <div className="button" onClick={() => navigate('/login')}>Вход</div>                        
+                            <div className="button" onClick={() => navigate('/registration')}>
+                                <UserAddOutlined style={{fontSize:'20px'}}/>  Регистрация</div>
+                            <div className="button" onClick={() => navigate('/login')}>
+                                <LoginOutlined style={{fontSize:'15px'}}/>  Вход</div>                        
                         </>
                 }
         </div>
